@@ -4,9 +4,12 @@
             [clojure.string :as string]
             [cirru.sepal :refer :all]))
 
+(defn run-make-code []
+  (string/trim (make-code
+    (pare (slurp "examples/demo.cirru") ""))))
+
 (deftest demo-test
   (testing "test demo.cirru"
     (is (=
       (string/trim (slurp "compiled/demo.clj"))
-      (string/trim (make-code
-        (pare (slurp "examples/demo.cirru") "")))))))
+      (run-make-code)))))

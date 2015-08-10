@@ -23,20 +23,34 @@
 
 (defn transform-if [])
 
-(defn transform-defn [])
+(defn transform-defn [func params & body]
+  `(defn ~(symbol func) [~@(map symbol params)] ~@(map transform-x body)))
+
+(defn transform-vector [& body]
+  `[~@(map transform-x body)])
+
+(defn transform-hashmap [& body]
+  `(hash-map ~@(map transform-x (apply concat body))))
 
 (defn transform-xs
-  ([] nil)
+  ([] [])
   ([xs]
     (case (first xs)
-      "defn" (transform-defn (rest xs))
+      "defn" (apply transform-defn (rest xs))
+      "[]" (apply transform-vector (rest xs))
+      "{}" (apply transform-hashmap (rest xs))
       (transform-apply xs))))
 
 (defn transform-token [x] (symbol x))
 
 (defn transform-x [x]
   (cond
-    (string? x) (transform-token x)
+    (string? x) (cond
+      (= (first x) \:) (keyword (subs x 1))
+      (= (first x) \|) (subs x 1)
+      (re-matches #"-?\d+(\.\d+)?" x) (load-string x)
+      (= (first x) \\) (load-string x)
+      :else (symbol x))
     (vector? x) (do
       (transform-xs x))
     :else "unknown"))
