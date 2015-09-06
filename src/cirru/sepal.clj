@@ -4,6 +4,11 @@
     [clojure.string :as string]))
 
 (declare transform-xs)
+(declare transform-x)
+
+(defn make-string [xs]
+  (with-out-str
+    (p/write (transform-xs xs) :dispatch p/code-dispatch)))
 
 (defn make-line [xs]
   (str "\n" (make-string xs)))
@@ -11,10 +16,6 @@
 (defn make-code [xs]
   (string/join "\n"
     (map make-line xs)))
-
-(defn make-string [xs]
-  (with-out-str
-    (p/write (transform-xs xs) :dispatch p/code-dispatch)))
 
 (defn transform-expr [])
 

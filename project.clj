@@ -1,4 +1,4 @@
-(defproject cirru/sepal "0.0.1"
+(defproject cirru/sepal "0.0.2"
   :description "Cirru Sepal experiment in Clojure"
   :url "https://github.com/Cirru/sepal.clj"
   :license {:name "Eclipse Public License"

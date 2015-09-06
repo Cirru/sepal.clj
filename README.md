@@ -4,11 +4,23 @@ Sepal.clj
 
 Cirru Sepal experiment in Clojure.
 
-## Usage
+### Usage
 
-> Not ready
+[![](https://clojars.org/cirru/sepal/latest-version.svg)](https://clojars.org/cirru/sepal)
 
-## License
+```clojure
+(ns cirru.sepal-test
+  (:require [clojure.test :refer :all]
+            [cirru.parser.core :refer [pare]]
+            [clojure.string :as string]
+            [cirru.sepal :refer :all]))
+
+(defn run-make-code []
+  (string/trim (make-code
+    (pare (slurp "examples/demo.cirru") ""))))
+```
+
+### License
 
 Copyright © 2015 jiyinyiyong
 
