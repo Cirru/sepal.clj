@@ -8,7 +8,7 @@
 
 (defn make-string [xs]
   (with-out-str
-    (p/write (transform-xs xs) :dispatch p/code-dispatch)))
+    (p/write (transform-xs xs))))
 
 (defn make-line [xs]
   (str "\n" (make-string xs)))
@@ -33,6 +33,9 @@
 (defn transform-hashmap [& body]
   `(hash-map ~@(map transform-x (apply concat body))))
 
+(defn transform-ns [& body]
+  `(ns ~@(map transform-x body)))
+
 (defn transform-xs
   ([] [])
   ([xs]
@@ -40,6 +43,7 @@
       "defn" (apply transform-defn (rest xs))
       "[]" (apply transform-vector (rest xs))
       "{}" (apply transform-hashmap (rest xs))
+      "ns" (apply transform-ns (rest xs))
       (transform-apply xs))))
 
 (defn transform-token [x] (symbol x))
@@ -54,4 +58,4 @@
       :else (symbol x))
     (vector? x) (do
       (transform-xs x))
-    :else "unknown"))
+    :else (str "unknown:" x)))
