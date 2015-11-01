@@ -31,3 +31,15 @@
     (is (=
       (string/trim (slurp "test/compiled/comment.clj"))
       (run-make-code "test/examples/comment.cirru")))))
+
+(deftest map-test
+  (testing "test map.cirru"
+    (is (=
+      (string/trim (slurp "test/compiled/map.clj"))
+      (run-make-code "test/examples/map.cirru")))))
+
+(deftest vector-test
+  (testing "test vector.cirru"
+    (is (=
+      (string/trim (slurp "test/compiled/vector.clj"))
+      (run-make-code "test/examples/vector.cirru")))))
