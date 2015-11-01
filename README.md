@@ -1,16 +1,41 @@
 
-Sepal.clj
+Cirru Sepal in Clojure
 ----
 
-Cirru Sepal experiment in Clojure.
-
 > Small subset of Clojure in indentation-based syntax.
+
+```cirru
+defn f1 (x)
+  + x 1
+```
+
+compiles to:
+
+```clojure
+(clojure.core/defn f1 [x] (+ x 1))
+```
+
+Currently handled functions:
+
+* `[]`
+* `{}`
+* `--` for comment
+* `case`
+* `def`
+* `defn`
+* `fn`
+* `let`
+* `ns`
 
 Read `test/examples/` and `test/compiled/` for details.
 
 ### Usage
 
+See [lein-cirru-sepal](https://github.com/Cirru/lein-cirru-sepal/) using as a plugin.
+
 [![](https://clojars.org/cirru/sepal/latest-version.svg)](https://clojars.org/cirru/sepal)
+
+Also function(`make-code`) for transforming code is available:
 
 ```clojure
 (ns cirru.sepal-test
