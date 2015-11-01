@@ -21,12 +21,8 @@
 
 ; file demo
 
-(defn transform-expr [])
-
 (defn transform-apply [xs]
   (map transform-x xs))
-
-(defn transform-if [])
 
 (defn transform-defn [func params & body]
   `(defn ~(symbol func) [~@(map symbol params)] ~@(map transform-x body)))
@@ -61,6 +57,21 @@
 (defn transform-comment [& body]
   (comment body))
 
+; file fn
+
+(defn transform-fn [params & body]
+  `(fn [~@(map symbol params)] ~@(map transform-x body)))
+
+; file cond
+(defn transform-cond [& body]
+  `(cond ~@(map transform-x (apply concat body))))
+
+; file case
+(defn transform-case [condition & body]
+  `(case ~(transform-x condition)
+      ~@(map transform-x (apply concat (butlast body)))
+      ~(transform-x (last body))))
+
 (defn transform-xs
   ([] [])
   ([xs]
@@ -76,7 +87,14 @@
       ":use" (apply transform-use (rest xs))
       ; let
       "let" (apply transform-let (rest xs))
+      ; comment
       "--" (apply transform-comment (rest xs))
+      ; fn
+      "fn" (apply transform-fn (rest xs))
+      ; cond
+      "cond" (apply transform-cond (rest xs))
+      ; case
+      "case" (apply transform-case (rest xs))
       (transform-apply xs))))
 
 (defn transform-token [x] (symbol x))
