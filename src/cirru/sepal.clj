@@ -19,6 +19,8 @@
   (string/join "\n"
     (map make-line xs)))
 
+; file demo
+
 (defn transform-expr [])
 
 (defn transform-apply [xs]
@@ -38,6 +40,8 @@
 (defn transform-hashmap [& body]
   `(hash-map ~@(map transform-x (apply concat body))))
 
+; file namespace
+
 (defn transform-ns [& body]
   `(ns ~@(map transform-x body)))
 
@@ -47,17 +51,32 @@
 (defn transform-use [& body]
   `(:use ~@(map transform-x body)))
 
+; file let
+
+(defn transform-let [pairs & body]
+  `(let [~@(map transform-x (apply concat pairs))] ~@(map transform-x body)))
+
+; file comment
+
+(defn transform-comment [& body]
+  (comment body))
+
 (defn transform-xs
   ([] [])
   ([xs]
     (case (first xs)
+      ; demo
       "def" (apply transform-def (rest xs))
       "defn" (apply transform-defn (rest xs))
       "[]" (apply transform-vector (rest xs))
       "{}" (apply transform-hashmap (rest xs))
+      ; namespace
       "ns" (apply transform-ns (rest xs))
       ":require" (apply transform-require (rest xs))
       ":use" (apply transform-use (rest xs))
+      ; let
+      "let" (apply transform-let (rest xs))
+      "--" (apply transform-comment (rest xs))
       (transform-apply xs))))
 
 (defn transform-token [x] (symbol x))

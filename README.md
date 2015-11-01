@@ -4,6 +4,10 @@ Sepal.clj
 
 Cirru Sepal experiment in Clojure.
 
+> Small subset of Clojure in indentation-based syntax.
+
+Read `test/examples/` and `test/compiled/` for details.
+
 ### Usage
 
 [![](https://clojars.org/cirru/sepal/latest-version.svg)](https://clojars.org/cirru/sepal)
