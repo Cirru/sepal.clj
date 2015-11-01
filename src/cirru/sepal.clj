@@ -29,6 +29,9 @@
 (defn transform-defn [func params & body]
   `(defn ~(symbol func) [~@(map symbol params)] ~@(map transform-x body)))
 
+(defn transform-def [& body]
+  `(def ~@(map transform-x body)))
+
 (defn transform-vector [& body]
   `[~@(map transform-x body)])
 
@@ -41,15 +44,20 @@
 (defn transform-require [& body]
   `(:require ~@(map transform-x body)))
 
+(defn transform-use [& body]
+  `(:use ~@(map transform-x body)))
+
 (defn transform-xs
   ([] [])
   ([xs]
     (case (first xs)
+      "def" (apply transform-def (rest xs))
       "defn" (apply transform-defn (rest xs))
       "[]" (apply transform-vector (rest xs))
       "{}" (apply transform-hashmap (rest xs))
       "ns" (apply transform-ns (rest xs))
       ":require" (apply transform-require (rest xs))
+      ":use" (apply transform-use (rest xs))
       (transform-apply xs))))
 
 (defn transform-token [x] (symbol x))

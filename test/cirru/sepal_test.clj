@@ -11,11 +11,11 @@
 (deftest demo-test
   (testing "test demo.cirru"
     (is (=
-      (string/trim (slurp "compiled/demo.clj"))
-      (run-make-code "examples/demo.cirru")))))
+      (string/trim (slurp "test/compiled/demo.clj"))
+      (run-make-code "test/examples/demo.cirru")))))
 
 (deftest namespace-test
   (testing "test namespace.cirru"
     (is (=
-      (string/trim (slurp "compiled/namespace.clj"))
-      (run-make-code "examples/namespace.cirru")))))
+      (string/trim (slurp "test/compiled/namespace.clj"))
+      (run-make-code "test/examples/namespace.cirru")))))
