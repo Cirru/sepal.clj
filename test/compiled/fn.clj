@@ -1,1 +1,1 @@
-(clojure.core/fn [a] a)
+(fn [a] a)

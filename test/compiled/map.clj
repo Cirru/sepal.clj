@@ -1,5 +1,4 @@
-(def demo
- (clojure.core/hash-map :a 1 :b [2] :c (clojure.core/hash-map :d 4)))
+(def demo {:c {:d 4}, :b [2], :a 1})
 
 (get demo :a)
 

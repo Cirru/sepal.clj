@@ -23,6 +23,7 @@ Currently handled functions:
 * `case`
 * `def`
 * `defn`
+* `defn-`
 * `fn`
 * `let`
 * `ns`
@@ -48,6 +49,11 @@ Also function(`make-code`) for transforming code is available:
   (string/trim (make-code
     (pare (slurp "examples/demo.cirru") ""))))
 ```
+
+### Acknowledgements
+
+* [Quoting Without Confusion](https://blog.8thlight.com/colin-jones/2012/05/22/quoting-without-confusion.html)
+  showed the tricky solution for using `` `~'defn `` to remove namespace in expanding
 
 ### License
 

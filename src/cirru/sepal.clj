@@ -25,21 +25,24 @@
   (map transform-x xs))
 
 (defn transform-defn [func params & body]
-  `(defn ~(symbol func) [~@(map symbol params)] ~@(map transform-x body)))
+  `(~'defn ~(symbol func) [~@(map symbol params)] ~@(map transform-x body)))
+
+(defn transform-defn- [func params & body]
+  `(~'defn- ~(symbol func) [~@(map symbol params)] ~@(map transform-x body)))
 
 (defn transform-def [& body]
-  `(def ~@(map transform-x body)))
+  `(~'def ~@(map transform-x body)))
 
 (defn transform-vector [& body]
   `[~@(map transform-x body)])
 
 (defn transform-hashmap [& body]
-  `(hash-map ~@(map transform-x (apply concat body))))
+  `{~@(map transform-x (apply concat body)) ~@(list)})
 
 ; file namespace
 
 (defn transform-ns [& body]
-  `(ns ~@(map transform-x body)))
+  `(~'ns ~@(map transform-x body)))
 
 (defn transform-require [& body]
   `(:require ~@(map transform-x body)))
@@ -50,7 +53,7 @@
 ; file let
 
 (defn transform-let [pairs & body]
-  `(let [~@(map transform-x (apply concat pairs))] ~@(map transform-x body)))
+  `(~'let [~@(map transform-x (apply concat pairs))] ~@(map transform-x body)))
 
 ; file comment
 
@@ -60,15 +63,15 @@
 ; file fn
 
 (defn transform-fn [params & body]
-  `(fn [~@(map symbol params)] ~@(map transform-x body)))
+  `(~'fn [~@(map symbol params)] ~@(map transform-x body)))
 
 ; file cond
 (defn transform-cond [& body]
-  `(cond ~@(map transform-x (apply concat body))))
+  `(~'cond ~@(map transform-x (apply concat body))))
 
 ; file case
 (defn transform-case [condition & body]
-  `(case ~(transform-x condition)
+  `(~'case ~(transform-x condition)
       ~@(map transform-x (apply concat (butlast body)))
       ~(transform-x (last body))))
 
@@ -79,6 +82,7 @@
       ; demo
       "def" (apply transform-def (rest xs))
       "defn" (apply transform-defn (rest xs))
+      "defn-" (apply transform-defn- (rest xs))
       "[]" (apply transform-vector (rest xs))
       "{}" (apply transform-hashmap (rest xs))
       ; namespace

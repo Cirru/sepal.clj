@@ -1,1 +1,1 @@
-(clojure.core/case a 1 "one" 2 "two" 3 "three" "default")
+(case a 1 "one" 2 "two" 3 "three" "default")
