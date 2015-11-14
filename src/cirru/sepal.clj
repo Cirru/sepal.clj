@@ -58,7 +58,7 @@
 ; file comment
 
 (defn transform-comment [& body]
-  (comment body))
+  `(~'comment ~@(map transform-x body)))
 
 ; file fn
 
