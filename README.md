@@ -12,7 +12,7 @@ defn f1 (x)
 compiles to:
 
 ```clojure
-(clojure.core/defn f1 [x] (+ x 1))
+(defn f1 [x] (+ x 1))
 ```
 
 Currently handled functions:
