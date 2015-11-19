@@ -5,59 +5,59 @@
             [cirru.sepal :refer :all]))
 
 (defn run-make-code [file]
-  (string/trim (make-code
-    (pare (slurp file) ""))))
+  (make-code
+    (pare (slurp file) "")))
 
 (deftest demo-test
   (testing "test demo.cirru"
     (is (=
-      (string/trim (slurp "test/compiled/demo.clj"))
+      (slurp "test/compiled/demo.clj")
       (run-make-code "test/examples/demo.cirru")))))
 
 (deftest namespace-test
   (testing "test namespace.cirru"
     (is (=
-      (string/trim (slurp "test/compiled/namespace.clj"))
+      (slurp "test/compiled/namespace.clj")
       (run-make-code "test/examples/namespace.cirru")))))
 
 (deftest let-test
   (testing "test let.cirru"
     (is (=
-      (string/trim (slurp "test/compiled/let.clj"))
+      (slurp "test/compiled/let.clj")
       (run-make-code "test/examples/let.cirru")))))
 
 (deftest comment-test
   (testing "test comment.cirru"
     (is (=
-      (string/trim (slurp "test/compiled/comment.clj"))
+      (slurp "test/compiled/comment.clj")
       (run-make-code "test/examples/comment.cirru")))))
 
 (deftest map-test
   (testing "test map.cirru"
     (is (=
-      (string/trim (slurp "test/compiled/map.clj"))
+      (slurp "test/compiled/map.clj")
       (run-make-code "test/examples/map.cirru")))))
 
 (deftest vector-test
   (testing "test vector.cirru"
     (is (=
-      (string/trim (slurp "test/compiled/vector.clj"))
+      (slurp "test/compiled/vector.clj")
       (run-make-code "test/examples/vector.cirru")))))
 
 (deftest fn-test
   (testing "test fn.cirru"
     (is (=
-      (string/trim (slurp "test/compiled/fn.clj"))
+      (slurp "test/compiled/fn.clj")
       (run-make-code "test/examples/fn.cirru")))))
 
 (deftest cond-test
   (testing "test cond.cirru"
     (is (=
-      (string/trim (slurp "test/compiled/cond.clj"))
+      (slurp "test/compiled/cond.clj")
       (run-make-code "test/examples/cond.cirru")))))
 
 (deftest case-test
   (testing "test case.cirru"
     (is (=
-      (string/trim (slurp "test/compiled/case.clj"))
+      (slurp "test/compiled/case.clj")
       (run-make-code "test/examples/case.cirru")))))

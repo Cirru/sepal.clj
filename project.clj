@@ -1,5 +1,5 @@
-(defproject cirru/sepal "0.0.5"
-  :description "Cirru Sepal experiment in Clojure"
+(defproject cirru/sepal "0.0.6"
+  :description "Sepal.clj -- Cirru Sepal in Clojure, indentation-based syntax for Clojure"
   :url "https://github.com/Cirru/sepal.clj"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}

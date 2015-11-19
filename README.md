@@ -15,7 +15,11 @@ compiles to:
 (defn f1 [x] (+ x 1))
 ```
 
-Currently handled functions:
+Read [Quick Start][quick] if you want to compile real code.
+
+[quick]: https://github.com/Cirru/sepal.clj/wiki/Quick-Start
+
+Special functions:
 
 * `[]`
 * `{}`
@@ -30,24 +34,29 @@ Currently handled functions:
 
 Read `test/examples/` and `test/compiled/` for details.
 
-### Usage
+Internally Sepal.clj is using `clojure.pprint/write` to generate code:
+
+```clojure
+(clojure.pprint/write quoted-code :dispatch clojure.pprint/code-dispatch)
+```
+
+### API Usage
 
 See [lein-cirru-sepal](https://github.com/Cirru/lein-cirru-sepal/) using as a plugin.
 
 [![](https://clojars.org/cirru/sepal/latest-version.svg)](https://clojars.org/cirru/sepal)
 
-Also function(`make-code`) for transforming code is available:
+Also function `make-code` is exposed to transform code from Cirru syntax tree:
 
 ```clojure
 (ns cirru.sepal-test
   (:require [clojure.test :refer :all]
             [cirru.parser.core :refer [pare]]
-            [clojure.string :as string]
-            [cirru.sepal :refer :all]))
+            [cirru.sepal :refer [make-code]]))
 
-(defn run-make-code []
-  (string/trim (make-code
-    (pare (slurp "examples/demo.cirru") ""))))
+(defn run []
+  (make-code
+    (pare "cirru code" "filename")))
 ```
 
 ### Acknowledgements

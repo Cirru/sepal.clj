@@ -13,10 +13,10 @@
       (p/write result :dispatch clojure.pprint/code-dispatch))))
 
 (defn make-line [xs]
-  (str "\n" (make-string xs)))
+  (str "\n" (make-string xs) "\n"))
 
 (defn make-code [xs]
-  (string/join "\n"
+  (string/join ""
     (map make-line xs)))
 
 ; file demo
