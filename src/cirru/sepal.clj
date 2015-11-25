@@ -37,7 +37,9 @@
   `[~@(map transform-x body)])
 
 (defn transform-hashmap [& body]
-  `{~@(map transform-x (apply concat body)) ~@(list)})
+  (if (every? coll? body)
+    `{~@(map transform-x (apply concat body)) ~@(list)}
+    `{~@(map transform-x body) ~@(list)}))
 
 ; file namespace
 
