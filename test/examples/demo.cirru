@@ -1,7 +1,7 @@
 
 println $ + 1 2 3
 
-println 1 2 3
+println 1 2 3 true false
 
 def open-paren "|("
 

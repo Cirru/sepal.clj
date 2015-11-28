@@ -108,6 +108,8 @@
 (defn transform-x [x]
   (cond
     (string? x) (cond
+      (= x "true") true
+      (= x "false") false
       (= (first x) \:) (keyword (subs x 1))
       (= (first x) \|) (subs x 1)
       (= (first x) \') `(quote ~(symbol (subs x 1)))
