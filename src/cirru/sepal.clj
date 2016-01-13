@@ -25,10 +25,24 @@
   (map transform-x xs))
 
 (defn transform-defn [func params & body]
-  `(~'defn ~(symbol func) [~@(map symbol params)] ~@(map transform-x body)))
+  (if (vector? (first params))
+    (let [all-body (conj body params)]
+      `(~'defn ~(symbol func) ~@(map
+        (fn [definition]
+          (let [[sub-params & sub-body] definition]
+            `([~@(map symbol sub-params)] ~@(map transform-x sub-body))))
+        all-body)))
+    `(~'defn ~(symbol func) [~@(map symbol params)] ~@(map transform-x body))))
 
 (defn transform-defn- [func params & body]
-  `(~'defn- ~(symbol func) [~@(map symbol params)] ~@(map transform-x body)))
+  (if (vector? (first params))
+    (let [all-body (conj body params)]
+      `(~'defn- ~(symbol func) ~@(map
+        (fn [definition]
+          (let [[sub-params & sub-body] definition]
+            `([~@(map symbol sub-params)] ~@(map transform-x sub-body))))
+        all-body)))
+    `(~'defn- ~(symbol func) [~@(map symbol params)] ~@(map transform-x body))))
 
 (defn transform-def [& body]
   `(~'def ~@(map transform-x body)))
