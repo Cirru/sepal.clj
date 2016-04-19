@@ -47,6 +47,9 @@
 (defn transform-def [& body]
   `(~'def ~@(map transform-x body)))
 
+(defn transform-defrecord [record-name fields]
+  `(~'defrecord ~(symbol record-name) [~@(map symbol fields)]))
+
 (defn transform-vector [& body]
   `[~@(map transform-x body)])
 
@@ -99,6 +102,7 @@
       "def" (apply transform-def (rest xs))
       "defn" (apply transform-defn (rest xs))
       "defn-" (apply transform-defn- (rest xs))
+      "defrecord" (apply transform-defrecord (rest xs))
       "[]" (apply transform-vector (rest xs))
       "{}" (apply transform-hashmap (rest xs))
       ; namespace
