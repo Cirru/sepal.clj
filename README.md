@@ -28,6 +28,7 @@ Special functions:
 * `def`
 * `defn`
 * `defn-`
+* `defrecord`
 * `fn`
 * `let`
 * `ns`
@@ -66,7 +67,4 @@ Also function `make-code` is exposed to transform code from Cirru syntax tree:
 
 ### License
 
-Copyright © 2015 jiyinyiyong
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+MIT

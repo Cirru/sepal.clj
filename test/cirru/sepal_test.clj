@@ -8,11 +8,11 @@
   (make-code
     (pare (slurp file) "")))
 
-(deftest demo-test
-  (testing "test demo.cirru"
+(deftest def-test
+  (testing "test def.cirru"
     (is (=
-      (slurp "test/compiled/demo.clj")
-      (run-make-code "test/examples/demo.cirru")))))
+      (slurp "test/compiled/def.clj")
+      (run-make-code "test/examples/def.cirru")))))
 
 (deftest namespace-test
   (testing "test namespace.cirru"
