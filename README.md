@@ -1,12 +1,12 @@
 
-Cirru Sepal in Clojure
+Cirru Sepal for Clojure
 ----
 
-> Small subset of Clojure in indentation-based syntax.
+> Generate Clojure code from syntax tree
 
-```cirru
-defn f1 (x)
-  + x 1
+```json
+[ "defn" "f1" [ "x" ]
+  [ "+" "x" "1" ] ]
 ```
 
 compiles to:
@@ -23,12 +23,12 @@ Special functions:
 
 * `[]`
 * `{}`
+* `#{}`
 * `--` for comment
 * `case`
 * `def`
 * `defn`
 * `defn-`
-* `defrecord`
 * `fn`
 * `let`
 * `ns`
@@ -43,15 +43,20 @@ Internally Sepal.clj is using `clojure.pprint/write` to generate code:
 
 ### API Usage
 
-See [lein-cirru-sepal](https://github.com/Cirru/lein-cirru-sepal/) using as a plugin.
+[![Clojars Project](https://img.shields.io/clojars/v/cirru/sepal.svg)](https://clojars.org/cirru/sepal)
 
-[![](https://clojars.org/cirru/sepal/latest-version.svg)](https://clojars.org/cirru/sepal)
+```clojure
+[cirru/sepal "0.0.12"]
+```
+
+See [boot-cirru-sepal](https://github.com/Cirru/boot-cirru-sepal) using as a plugin.
 
 Also function `make-code` is exposed to transform code from Cirru syntax tree:
 
 ```clojure
 (ns cirru.sepal-test
   (:require [clojure.test :refer :all]
+            ; cirru is an old indentation based text syntax
             [cirru.parser.core :refer [pare]]
             [cirru.sepal :refer [make-code]]))
 

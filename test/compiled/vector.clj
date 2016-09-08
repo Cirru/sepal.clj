@@ -4,3 +4,5 @@
 (get demo 1)
 
 (nth demo 1)
+
+(def demo-2 #{1 3 2})

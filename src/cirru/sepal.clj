@@ -58,6 +58,9 @@
     `{~@(map transform-x (apply concat body)) ~@(list)}
     `{~@(map transform-x body) ~@(list)}))
 
+(defn transform-hashset [& body]
+  `#{~@(map transform-x body)})
+
 ; file namespace
 
 (defn transform-ns [& body]
@@ -105,6 +108,7 @@
       "defrecord" (apply transform-defrecord (rest xs))
       "[]" (apply transform-vector (rest xs))
       "{}" (apply transform-hashmap (rest xs))
+      "#{}" (apply transform-hashset (rest xs))
       ; namespace
       "ns" (apply transform-ns (rest xs))
       ":require" (apply transform-require (rest xs))
