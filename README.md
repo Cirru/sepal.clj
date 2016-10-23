@@ -46,7 +46,7 @@ Internally Sepal.clj is using `clojure.pprint/write` to generate code:
 [![Clojars Project](https://img.shields.io/clojars/v/cirru/sepal.svg)](https://clojars.org/cirru/sepal)
 
 ```clojure
-[cirru/sepal "0.0.12"]
+[cirru/sepal "0.0.13"]
 ```
 
 See [boot-cirru-sepal](https://github.com/Cirru/boot-cirru-sepal) using as a plugin.
