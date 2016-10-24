@@ -3,15 +3,14 @@
  :asset-paths #{}
  :source-paths #{"test/"}
  :resource-paths #{"src/"}
-
- :dev-dependencies '[]
  :dependencies '[[org.clojure/clojure       "1.8.0"       :scope "test"]
                  [adzerk/boot-test          "1.1.1"       :scope "test"]
+                 [fipp                      "0.6.6"]
                  [cirru/parser              "0.0.3"]])
 
 (require '[adzerk.boot-test :refer :all])
 
-(def +version+ "0.0.13")
+(def +version+ "0.0.14")
 
 (task-options!
   pom {:project     'cirru/sepal
