@@ -35,11 +35,13 @@ Special functions:
 
 Read `test/examples/` and `test/compiled/` for details.
 
-Internally Sepal.clj is using `clojure.pprint/write` to generate code:
+Sepal.clj used to with generate code `clojure.pprint/write`:
 
 ```clojure
 (clojure.pprint/write quoted-code :dispatch clojure.pprint/code-dispatch)
 ```
+
+Now it's based on [fipp](https://github.com/brandonbloom/fipp/) for better performance and readability.
 
 ### API Usage
 
