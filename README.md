@@ -48,7 +48,7 @@ Now it's based on [fipp](https://github.com/brandonbloom/fipp/) for better perfo
 [![Clojars Project](https://img.shields.io/clojars/v/cirru/sepal.svg)](https://clojars.org/cirru/sepal)
 
 ```clojure
-[cirru/sepal "0.0.14"]
+[cirru/sepal "0.0.15"]
 ```
 
 See [boot-cirru-sepal](https://github.com/Cirru/boot-cirru-sepal) using as a plugin.
