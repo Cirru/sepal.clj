@@ -1,7 +1,7 @@
 
 (ns cirru.sepal
   (:require
-    [fipp.clojure :as fipp]
+    [fipp.clojure   :as fipp]
     [clojure.string :as string]
     [cirru.polyfill :refer [read-string*]]))
 
