@@ -41,14 +41,14 @@ Sepal.clj used to with generate code `clojure.pprint/write`:
 (clojure.pprint/write quoted-code :dispatch clojure.pprint/code-dispatch)
 ```
 
-It was based on [fipp](https://github.com/brandonbloom/fipp/) for better performance and readability.(Temporarily using `clojure.pprint` for Lumo support).
+It's based on [fipp](https://github.com/brandonbloom/fipp/) for better performance and readability.
 
 ### API Usage
 
 [![Clojars Project](https://img.shields.io/clojars/v/cirru/sepal.svg)](https://clojars.org/cirru/sepal)
 
 ```clojure
-[cirru/sepal "0.0.16"]
+[cirru/sepal "0.0.17"]
 ```
 
 See [boot-cirru-sepal](https://github.com/Cirru/boot-cirru-sepal) using as a plugin.

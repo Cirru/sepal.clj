@@ -1,7 +1,7 @@
 
 (ns cirru.sepal
   (:require
-    [clojure.pprint :as pprint]
+    [fipp.clojure :as fipp]
     [clojure.string :as string]
     [cirru.polyfill :refer [read-string*]]))
 
@@ -11,7 +11,7 @@
 (defn make-string [xs]
   (let
     [result (transform-xs xs)]
-    (string/trim (with-out-str (pprint/write result)))))
+    (string/trim (with-out-str (fipp/pprint result {:width 92})))))
 
 (defn make-line [xs]
   (str "\n" (make-string xs) "\n"))
