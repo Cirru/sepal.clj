@@ -84,9 +84,15 @@
   `(~'comment ~@(map transform-x body)))
 
 ; file fn
-
 (defn transform-fn [params & body]
-  `(~'fn [~@(map symbol params)] ~@(map transform-x body)))
+  (if (vector? (first params))
+    (let [all-body (conj body params)]
+      `(~'fn ~@(map
+        (fn [definition]
+          (let [[sub-params & sub-body] definition]
+            `([~@(map symbol sub-params)] ~@(map transform-x sub-body))))
+        all-body)))
+    `(~'fn [~@(map symbol params)] ~@(map transform-x body))))
 
 ; file cond
 (defn transform-cond [& body]
