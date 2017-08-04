@@ -60,6 +60,9 @@
 (defn transform-vector [& body]
   `[~@(map transform-x body)])
 
+(defn transform-list [& body]
+  `'(~@(map transform-x body)))
+
 (defn transform-hashmap [& body]
   (if (every? coll? body)
     `{~@(map transform-x (apply concat body)) ~@(list)}
@@ -124,6 +127,7 @@
       "[]" (apply transform-vector (rest xs))
       "{}" (apply transform-hashmap (rest xs))
       "#{}" (apply transform-hashset (rest xs))
+      "'()" (apply transform-list (rest xs))
       ; namespace
       "ns" (apply transform-ns (rest xs))
       ":require" (apply transform-require (rest xs))

@@ -10,7 +10,7 @@
 
 (require '[adzerk.boot-test :refer :all])
 
-(def +version+ "0.0.19")
+(def +version+ "0.0.20")
 
 (task-options!
   pom {:project     'cirru/sepal

@@ -6,3 +6,5 @@
 (nth demo 1)
 
 (def demo-2 #{1 3 2})
+
+(def demo-3 '(1 2 3))
