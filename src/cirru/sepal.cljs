@@ -1,24 +1,11 @@
 
 (ns cirru.sepal
-  (:require
-    [fipp.clojure   :as fipp]
-    [clojure.string :as string]
-    [cirru.polyfill :refer [read-string*]]))
+  (:require [clojure.string :as string]
+            [fipp.clojure :as fipp]
+            [cljs.reader :refer [read-string]]))
 
 (declare transform-xs)
 (declare transform-x)
-
-(defn make-string [xs]
-  (let
-    [result (transform-xs xs)]
-    (string/trim (with-out-str (fipp/pprint result {:width 92})))))
-
-(defn make-line [xs]
-  (str "\n" (make-string xs) "\n"))
-
-(defn make-code [xs]
-  (string/join ""
-    (map make-line xs)))
 
 ; file demo
 
@@ -115,48 +102,63 @@
       ~@(map transform-x (apply concat (butlast body)))
       ~(transform-x (last body))))
 
-(defn transform-xs
-  ([] [])
-  ([xs]
-    (case (first xs)
-      ; demo
-      "def" (apply transform-def (rest xs))
-      "defn" (apply transform-defn (rest xs))
-      "defn-" (apply transform-defn- (rest xs))
-      "defrecord" (apply transform-defrecord (rest xs))
-      "[]" (apply transform-vector (rest xs))
-      "{}" (apply transform-hashmap (rest xs))
-      "#{}" (apply transform-hashset (rest xs))
-      "'()" (apply transform-list (rest xs))
-      ; namespace
-      "ns" (apply transform-ns (rest xs))
-      ":require" (apply transform-require (rest xs))
-      ":use" (apply transform-use (rest xs))
-      ; let
-      "let" (apply transform-let (rest xs))
-      ; comment
-      "--" (apply transform-comment (rest xs))
-      ; fn
-      "fn" (apply transform-fn (rest xs))
-      ; cond
-      "cond" (apply transform-cond (rest xs))
-      ; case
-      "case" (apply transform-case (rest xs))
-      (transform-apply xs))))
-
 (defn transform-token [x] (symbol x))
 
 (defn transform-x [x]
   (cond
-    (string? x) (cond
+    (string? x)
+    (cond
       (= x "true") true
       (= x "false") false
       (= (first x) \:) (keyword (subs x 1))
       (= (first x) \|) (subs x 1)
       (= (first x) \') `(quote ~(symbol (subs x 1)))
-      (re-matches #"-?\d+(\.\d+)?" x) (read-string* x)
-      (= (first x) \\) (read-string* x)
+      (re-matches #"-?\d+(\.\d+)?" x) (read-string x)
+      (= (first x) \\) (read-string x)
       :else (symbol x))
-    (vector? x) (do
+    (vector? x)
+    (do
       (transform-xs x))
     :else (str "unknown:" x)))
+
+(defn transform-xs
+  ([] [])
+  ([xs]
+   (case (first xs)
+    ; demo
+    "def" (apply transform-def (rest xs))
+    "defn" (apply transform-defn (rest xs))
+    "defn-" (apply transform-defn- (rest xs))
+    "defrecord" (apply transform-defrecord (rest xs))
+    "[]" (apply transform-vector (rest xs))
+    "{}" (apply transform-hashmap (rest xs))
+    "#{}" (apply transform-hashset (rest xs))
+    "'()" (apply transform-list (rest xs))
+    ; namespace
+    "ns" (apply transform-ns (rest xs))
+    ":require" (apply transform-require (rest xs))
+    ":use" (apply transform-use (rest xs))
+    ; let
+    "let" (apply transform-let (rest xs))
+    ; comment
+    "--" (apply transform-comment (rest xs))
+    ; fn
+    "fn" (apply transform-fn (rest xs))
+    ; cond
+    "cond" (apply transform-cond (rest xs))
+    ; case
+    "case" (apply transform-case (rest xs))
+    (transform-apply xs))))
+
+
+(defn make-string [xs]
+  (let
+    [result (transform-xs xs)]
+    (string/trim (with-out-str (fipp/pprint result {:width 92})))))
+
+(defn make-line [xs]
+  (str "\n" (make-string xs) "\n"))
+
+(defn make-code [xs]
+  (string/join ""
+    (map make-line xs)))

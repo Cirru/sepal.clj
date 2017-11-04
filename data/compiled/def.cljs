@@ -11,4 +11,4 @@
 
 (defn- f1 [x] (+ x 1))
 
-(println :key "string" \c \newline)
+(println :key "string" "c" "\n")

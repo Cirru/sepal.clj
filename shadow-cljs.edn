@@ -1,0 +1,6 @@
+{:source-paths ["src"]
+ :dependencies [[fipp "0.6.10"]]
+ :builds {:test {:target :node-script
+                 :output-to "target/test.js"
+                 :main cirru.sepal-test/main!
+                 :devtools {:after-load cirru.sepal-test/reload!}}}}
