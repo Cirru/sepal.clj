@@ -100,7 +100,7 @@
 
 ; file fn*
 (defn transform-fn* [& body]
-  `(~'fn* [~@(map symbol params)] ~(map transform-x body)))
+  `(~'fn* [] ~(map transform-x body)))
 
 ; file cond
 (defn transform-cond [& body]

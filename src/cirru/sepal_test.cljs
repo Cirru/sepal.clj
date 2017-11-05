@@ -5,87 +5,90 @@
             [cljs.test :refer [deftest is testing run-tests]]
             ["fs" :as fs]))
 
+(defn read-result [file]
+  (fs/readFileSync (str "data/compiled/" file) "utf8"))
+
 (defn run-make-code [file]
   (make-code
-    (read-string (fs/readFileSync file "utf8"))))
+    (read-string (fs/readFileSync (str "data/examples/" file) "utf8"))))
 
 (deftest def-test
-  (testing "test def.cirru"
+  (testing "test def syntax"
     (is
       (=
-        (fs/readFileSync "data/compiled/def.cljs" "utf8")
-        (run-make-code "data/examples/def.edn")))))
+        (read-result "def.cljs")
+        (run-make-code "def.edn")))))
 
 (deftest namespace-test
-  (testing "test namespace.cirru"
+  (testing "test namespace syntax"
     (is
       (=
-        (fs/readFileSync "data/compiled/namespace.cljs" "utf8")
-        (run-make-code "data/examples/namespace.edn")))))
+        (read-result "namespace.cljs")
+        (run-make-code "namespace.edn")))))
 
 (deftest let-test
-  (testing "test let.cirru"
+  (testing "test let syntax"
     (is
       (=
-        (fs/readFileSync "data/compiled/let.cljs" "utf8")
-        (run-make-code "data/examples/let.edn")))))
+        (read-result "let.cljs")
+        (run-make-code "let.edn")))))
 
 (deftest comment-test
-  (testing "test comment.cirru"
+  (testing "test comment syntax"
     (is
       (=
-        (fs/readFileSync "data/compiled/comment.cljs" "utf8")
-        (run-make-code "data/examples/comment.edn")))))
+        (read-result "comment.cljs")
+        (run-make-code "comment.edn")))))
 
 (deftest map-test
-  (testing "test map.cirru"
+  (testing "test map syntax"
     (is
       (=
-        (fs/readFileSync "data/compiled/map.cljs" "utf8")
-        (run-make-code "data/examples/map.edn")))))
+        (read-result "map.cljs")
+        (run-make-code "map.edn")))))
 
 (deftest vector-test
-  (testing "test vector.cirru"
+  (testing "test vector syntax"
     (is
       (=
-        (fs/readFileSync "data/compiled/vector.cljs" "utf8")
-        (run-make-code "data/examples/vector.edn")))))
+        (read-result "vector.cljs")
+        (run-make-code "vector.edn")))))
 
 (deftest fn-test
-  (testing "test fn.cirru"
+  (testing "test fn syntax"
     (is
       (=
-        (fs/readFileSync "data/compiled/fn.cljs" "utf8")
-        (run-make-code "data/examples/fn.edn")))))
+        (read-result "fn.cljs")
+        (run-make-code "fn.edn")))))
 
-(deftest fn-test
-  (testing "test fn.cirru"
+(deftest fn*-test
+  (testing "test fn syntax"
     (is
       (=
-        (fs/readFileSync "data/compiled/fn*.cljs" "utf8")
-        (run-make-code "data/examples/fn*.edn")))))
+        (read-result "fn*.cljs")
+        (run-make-code "fn*.edn")))))
 
 (deftest cond-test
-  (testing "test cond.cirru"
+  (testing "test cond syntax"
     (is
       (=
-        (fs/readFileSync "data/compiled/cond.cljs" "utf8")
-        (run-make-code "data/examples/cond.edn")))))
+        (read-result "cond.cljs")
+        (run-make-code "cond.edn")))))
 
 (deftest case-test
-  (testing "test case.cirru"
+  (testing "test case syntax"
     (is
       (=
-        (fs/readFileSync "data/compiled/case.cljs" "utf8")
-        (run-make-code "data/examples/case.edn")))))
+        (read-result "case.cljs")
+        (run-make-code "case.edn")))))
 
 
 (deftest loop-test
-  (testing "test case.cirru"
+  (testing "test case syntax"
     (is
       (=
-        (fs/readFileSync "data/compiled/loop.cljs" "utf8")
-        (run-make-code "data/examples/loop.edn")))))
+        (read-result "loop.cljs")
+        (run-make-code "loop.edn")))))
 
 
 (defn main! []

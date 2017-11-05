@@ -60,13 +60,10 @@ Also function `make-code` is exposed to transform code from Cirru syntax tree:
 ```clojure
 (ns cirru.sepal-test
   (:require [clojure.test :refer :all]
-            ; cirru is an old indentation based text syntax
-            [cirru.parser.core :refer [pare]]
             [cirru.sepal :refer [make-code]]))
 
 (defn run []
-  (make-code
-    (pare "cirru code" "filename")))
+  (make-code [["println" ["+" "2" "2"]]]))
 ```
 
 ### Acknowledgements
