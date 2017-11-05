@@ -75,6 +75,12 @@
   (assert (coll? pairs) "[Sepal] let requires a sequence for bindings!")
   `(~'let [~@(map transform-x (apply concat pairs))] ~@(map transform-x body)))
 
+; file loop
+
+(defn transform-loop [pairs & body]
+  (assert (coll? pairs) "[Sepal] loop requires a sequence for bindings!")
+  `(~'loop [~@(map transform-x (apply concat pairs))] ~@(map transform-x body)))
+
 ; file comment
 
 (defn transform-comment [& body]
@@ -140,6 +146,8 @@
     ":use" (apply transform-use (rest xs))
     ; let
     "let" (apply transform-let (rest xs))
+    ; loop
+    "loop" (apply transform-loop (rest xs))
     ; comment
     "--" (apply transform-comment (rest xs))
     ; fn

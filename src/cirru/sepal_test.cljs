@@ -73,6 +73,14 @@
         (run-make-code "data/examples/case.edn")))))
 
 
+(deftest loop-test
+  (testing "test case.cirru"
+    (is
+      (=
+        (fs/readFileSync "data/compiled/loop.cljs" "utf8")
+        (run-make-code "data/examples/loop.edn")))))
+
+
 (defn main! []
   (run-tests))
 
