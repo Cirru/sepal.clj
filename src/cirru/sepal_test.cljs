@@ -58,6 +58,13 @@
         (fs/readFileSync "data/compiled/fn.cljs" "utf8")
         (run-make-code "data/examples/fn.edn")))))
 
+(deftest fn-test
+  (testing "test fn.cirru"
+    (is
+      (=
+        (fs/readFileSync "data/compiled/fn*.cljs" "utf8")
+        (run-make-code "data/examples/fn*.edn")))))
+
 (deftest cond-test
   (testing "test cond.cirru"
     (is

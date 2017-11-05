@@ -98,6 +98,10 @@
         all-body)))
     `(~'fn [~@(map symbol params)] ~@(map transform-x body))))
 
+; file fn*
+(defn transform-fn* [& body]
+  `(~'fn* [~@(map symbol params)] ~(map transform-x body)))
+
 ; file cond
 (defn transform-cond [& body]
   `(~'cond ~@(map transform-x (apply concat body))))
@@ -152,6 +156,8 @@
     "--" (apply transform-comment (rest xs))
     ; fn
     "fn" (apply transform-fn (rest xs))
+    ; fn*
+    "#()" (apply transform-fn* (rest xs))
     ; cond
     "cond" (apply transform-cond (rest xs))
     ; case
