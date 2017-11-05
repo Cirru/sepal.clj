@@ -154,6 +154,9 @@
     "loop" (apply transform-loop (rest xs))
     ; comment
     "--" (apply transform-comment (rest xs))
+    ; comment
+    ";" (apply transform-comment (rest xs))
+    ";;" (apply transform-comment (rest xs))
     ; fn
     "fn" (apply transform-fn (rest xs))
     ; fn*

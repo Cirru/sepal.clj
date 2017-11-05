@@ -24,13 +24,15 @@ Special functions:
 * `[]`
 * `{}`
 * `#{}`
-* `--` for comment
+* `;` and `;;`
 * `case`
 * `def`
 * `defn`
 * `defn-`
 * `fn`
+* `fn*`
 * `let`
+* `loop`
 * `ns`
 
 Read `test/examples/` and `test/compiled/` for details.
