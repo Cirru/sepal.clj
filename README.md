@@ -50,7 +50,7 @@ It's based on [fipp](https://github.com/brandonbloom/fipp/) for better performan
 [![Clojars Project](https://img.shields.io/clojars/v/cirru/sepal.svg)](https://clojars.org/cirru/sepal)
 
 ```clojure
-[cirru/sepal "0.1.0"]
+[cirru/sepal "0.1.1"]
 ```
 
 See [boot-cirru-sepal](https://github.com/Cirru/boot-cirru-sepal) using as a plugin.
@@ -64,6 +64,12 @@ Also function `make-code` is exposed to transform code from Cirru syntax tree:
 
 (defn run []
   (make-code [["println" ["+" "2" "2"]]]))
+```
+
+### Test
+
+```bash
+yarn test
 ```
 
 ### Acknowledgements

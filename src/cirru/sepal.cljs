@@ -153,8 +153,6 @@
     ; loop
     "loop" (apply transform-loop (rest xs))
     ; comment
-    "--" (apply transform-comment (rest xs))
-    ; comment
     ";" (apply transform-comment (rest xs))
     ";;" (apply transform-comment (rest xs))
     ; fn
