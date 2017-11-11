@@ -72,13 +72,15 @@
 ; file let
 
 (defn transform-let [pairs & body]
-  (assert (coll? pairs) "[Sepal] let requires a sequence for bindings!")
+  (assert (coll? pairs) (str "[Sepal] let requires a sequence for bindings: " pairs))
+  (assert (every? coll? pairs) (str "[Sepal] detected literal in let bindings: " pairs))
   `(~'let [~@(map transform-x (apply concat pairs))] ~@(map transform-x body)))
 
 ; file loop
 
 (defn transform-loop [pairs & body]
-  (assert (coll? pairs) "[Sepal] loop requires a sequence for bindings!")
+  (assert (coll? pairs) (str "[Sepal] loop requires a sequence for bindings: " pairs))
+  (assert (every? coll? pairs) (str "[Sepal] detected literal in loop bindings: " pairs))
   `(~'loop [~@(map transform-x (apply concat pairs))] ~@(map transform-x body)))
 
 ; file comment
