@@ -82,14 +82,19 @@
         (read-result "case.cljs")
         (run-make-code "case.edn")))))
 
-
 (deftest loop-test
-  (testing "test case syntax"
+  (testing "test loop syntax"
     (is
       (=
         (read-result "loop.cljs")
         (run-make-code "loop.edn")))))
 
+(deftest doseq-test
+  (testing "test doseq syntax"
+    (is
+      (=
+        (read-result "doseq.cljs")
+        (run-make-code "doseq.edn")))))
 
 (defn main! []
   (run-tests))

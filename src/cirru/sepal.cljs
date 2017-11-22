@@ -83,6 +83,13 @@
   (assert (every? coll? pairs) (str "[Sepal] detected literal in loop bindings: " pairs))
   `(~'loop [~@(map transform-x (apply concat pairs))] ~@(map transform-x body)))
 
+; file doseq
+
+(defn transform-doseq [pairs & body]
+  (assert (coll? pairs) (str "[Sepal] doseq requires a sequence for bindings: " pairs))
+  (assert (every? coll? pairs) (str "[Sepal] detected literal in doseq bindings: " pairs))
+  `(~'doseq [~@(map transform-x (apply concat pairs))] ~@(map transform-x body)))
+
 ; file comment
 
 (defn transform-comment [& body]
@@ -154,6 +161,8 @@
     "let" (apply transform-let (rest xs))
     ; loop
     "loop" (apply transform-loop (rest xs))
+    ; doseq
+    "doseq" (apply transform-doseq (rest xs))
     ; comment
     ";" (apply transform-comment (rest xs))
     ";;" (apply transform-comment (rest xs))
@@ -161,6 +170,7 @@
     "fn" (apply transform-fn (rest xs))
     ; fn*
     "#()" (apply transform-fn* (rest xs))
+    "fn*" (apply transform-fn* (rest xs))
     ; cond
     "cond" (apply transform-cond (rest xs))
     ; case

@@ -50,7 +50,7 @@ It's based on [fipp](https://github.com/brandonbloom/fipp/) for better performan
 [![Clojars Project](https://img.shields.io/clojars/v/cirru/sepal.svg)](https://clojars.org/cirru/sepal)
 
 ```clojure
-[cirru/sepal "0.1.2"]
+[cirru/sepal "0.1.3"]
 ```
 
 See [boot-cirru-sepal](https://github.com/Cirru/boot-cirru-sepal) using as a plugin.

@@ -1102,20 +1102,20 @@ sha.js@^2.4.0, sha.js@^2.4.8:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
-shadow-cljs-jar@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/shadow-cljs-jar/-/shadow-cljs-jar-0.10.0.tgz#9895e6e5ccfde1c7b673737b1dfd9149194b644f"
+shadow-cljs-jar@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/shadow-cljs-jar/-/shadow-cljs-jar-1.1.0.tgz#17fee311c5832b12eec65072b5d265f1c35ff67a"
 
-shadow-cljs@^2.0.59:
-  version "2.0.59"
-  resolved "https://registry.yarnpkg.com/shadow-cljs/-/shadow-cljs-2.0.59.tgz#77434460766a776c767cff9ca3d824e01a7aa61a"
+shadow-cljs@^2.0.95:
+  version "2.0.95"
+  resolved "https://registry.yarnpkg.com/shadow-cljs/-/shadow-cljs-2.0.95.tgz#ae8c9b6fd19704cf530ee201551a9ca6e99c0d04"
   dependencies:
     babel-core "^6.26.0"
     babel-preset-env "^1.6.0"
     mkdirp "^0.5.1"
     node-libs-browser "^2.0.0"
     readline-sync "^1.4.7"
-    shadow-cljs-jar "^0.10.0"
+    shadow-cljs-jar "1.1.0"
     signal-exit "^3.0.2"
     source-map-support "^0.4.15"
     ws "^3.0.0"
