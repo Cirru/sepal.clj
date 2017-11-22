@@ -30,10 +30,11 @@ Special functions:
 * `defn`
 * `defn-`
 * `fn`
-* `fn*`
+* `fn*`, `#()`
 * `let`
 * `loop`
 * `ns`
+* `doseq`
 
 Read `test/examples/` and `test/compiled/` for details.
 
