@@ -1,5 +1,5 @@
 
-(ns cirru.sepal
+(ns cirru-sepal.core
   (:require [clojure.string :as string]
             [fipp.clojure :as fipp]
             [cljs.reader :refer [read-string]]))
@@ -186,6 +186,6 @@
 (defn make-line [xs]
   (str "\n" (make-string xs) "\n"))
 
-(defn make-code [xs]
+(defn write-code [xs]
   (string/join ""
     (map make-line xs)))

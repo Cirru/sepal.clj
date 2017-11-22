@@ -9,17 +9,23 @@ Cirru Sepal for Clojure
   [ "+" "x" "1" ] ]
 ```
 
-compiles to:
-
 ```clojure
 (defn f1 [x] (+ x 1))
 ```
 
-Read [Quick Start][quick] if you want to compile real code.
+Read [Quick Start](https://github.com/Cirru/sepal.clj/wiki/Quick-Start) if you want to compile real code. It's based on [fipp](https://github.com/brandonbloom/fipp/) for better performance and readability.
 
-[quick]: https://github.com/Cirru/sepal.clj/wiki/Quick-Start
+### API Usage
 
-Special functions:
+`[cirru/sepal "0.1.3"]` [![Clojars Project](https://img.shields.io/clojars/v/cirru/sepal.svg)](https://clojars.org/cirru/sepal)
+
+```clojure
+(cirru-sepal.core/write-code [["println" ["+" "2" "2"]]])
+
+(cirru-sepal.analyze/write-file {:ns ["ns" "a.b"], :proc [], :defs {:main! ["defn" "main!" ["a" "b"]]}})
+```
+
+Supported forms:
 
 * `[]`
 * `{}`
@@ -36,36 +42,7 @@ Special functions:
 * `ns`
 * `doseq`
 
-Read `test/examples/` and `test/compiled/` for details.
-
-Sepal.clj used to with generate code `clojure.pprint/write`:
-
-```clojure
-(clojure.pprint/write quoted-code :dispatch clojure.pprint/code-dispatch)
-```
-
-It's based on [fipp](https://github.com/brandonbloom/fipp/) for better performance and readability.
-
-### API Usage
-
-[![Clojars Project](https://img.shields.io/clojars/v/cirru/sepal.svg)](https://clojars.org/cirru/sepal)
-
-```clojure
-[cirru/sepal "0.1.3"]
-```
-
-See [boot-cirru-sepal](https://github.com/Cirru/boot-cirru-sepal) using as a plugin.
-
-Also function `make-code` is exposed to transform code from Cirru syntax tree:
-
-```clojure
-(ns cirru.sepal-test
-  (:require [clojure.test :refer :all]
-            [cirru.sepal :refer [make-code]]))
-
-(defn run []
-  (make-code [["println" ["+" "2" "2"]]]))
-```
+Read `data/examples/` and `data/compiled/` for details.
 
 ### Test
 

@@ -3,8 +3,8 @@
   (String/valueOf (.readPassword (System/console) guide nil)))
 
 (set-env!
-  :resource-paths #{"src"}
-  :dependencies '[[fipp "0.6.10"]]
+  :resource-paths #{"src" "polyfill"}
+  :dependencies '[[fipp "0.6.12"]]
   :repositories #(conj % ["clojars" {:url "https://clojars.org/repo/"
                                      :username "jiyinyiyong"
                                      :password (read-password "Clojars password: ")}]))

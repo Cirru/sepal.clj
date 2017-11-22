@@ -1,7 +1,8 @@
-(ns cirru.sepal-test
+(ns cirru-sepal.tree-test
   (:require [clojure.string :as string]
             [cljs.reader :refer [read-string]]
-            [cirru.sepal :refer [make-code]]
+            [cirru-sepal.core :refer [write-code]]
+            [cirru-sepal.analyze :refer [write-file]]
             [cljs.test :refer [deftest is testing run-tests]]
             ["fs" :as fs]))
 
@@ -9,7 +10,7 @@
   (fs/readFileSync (str "data/compiled/" file) "utf8"))
 
 (defn run-make-code [file]
-  (make-code
+  (write-code
     (read-string (fs/readFileSync (str "data/examples/" file) "utf8"))))
 
 (deftest def-test
@@ -95,6 +96,19 @@
       (=
         (read-result "doseq.cljs")
         (run-make-code "doseq.edn")))))
+
+(def example-file "
+(ns a.b )
+
+(defn main! [a b] )
+")
+
+(def example-tree {:ns ["ns" "a.b"], :proc [], :defs {:main! ["defn" "main!" ["a" "b"]]}})
+
+(deftest file-test
+  (testing "test generating file"
+    (is
+      (= example-file (write-file example-tree)))))
 
 (defn main! []
   (run-tests))
