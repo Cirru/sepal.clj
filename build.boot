@@ -9,13 +9,13 @@
                                      :username "jiyinyiyong"
                                      :password (read-password "Clojars password: ")}]))
 
-(def +version+ "0.1.3")
+(def +version+ "0.2.0")
 
 (deftask deploy []
   (comp
     (pom :project     'cirru/sepal
          :version     +version+
-         :description "Sepal.clj -- Cirru Sepal in Clojure, indentation-based syntax for Clojure"
+         :description "Generate Clojure code from syntax tree"
          :url         "https://github.com/Cirru/sepal.clj"
          :scm         {:url "https://github.com/Cirru/sepal.clj"}
          :license     {"MIT" "http://opensource.org/licenses/mit-license.php"})

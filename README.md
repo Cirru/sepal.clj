@@ -1,5 +1,5 @@
 
-Cirru Sepal for Clojure
+Cirru Sepal for Clojure [![Clojars Project](https://img.shields.io/clojars/v/cirru/sepal.svg)](https://clojars.org/cirru/sepal)
 ----
 
 > Generate Clojure code from syntax tree
@@ -17,7 +17,9 @@ Read [Quick Start](https://github.com/Cirru/sepal.clj/wiki/Quick-Start) if you w
 
 ### API Usage
 
-`[cirru/sepal "0.1.3"]` [![Clojars Project](https://img.shields.io/clojars/v/cirru/sepal.svg)](https://clojars.org/cirru/sepal)
+```edn
+[cirru/sepal "0.2.0"]
+```
 
 ```clojure
 (cirru-sepal.core/write-code [["println" ["+" "2" "2"]]])
