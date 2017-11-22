@@ -13,8 +13,6 @@ Cirru Sepal for Clojure
 (defn f1 [x] (+ x 1))
 ```
 
-Read [Quick Start](https://github.com/Cirru/sepal.clj/wiki/Quick-Start) if you want to compile real code. It's based on [fipp](https://github.com/brandonbloom/fipp/) for better performance and readability.
-
 ### API Usage [![Clojars Project](https://img.shields.io/clojars/v/cirru/sepal.svg)](https://clojars.org/cirru/sepal)
 
 ```edn
