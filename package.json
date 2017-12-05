@@ -6,10 +6,11 @@
   "author": "jiyinyiyong <jiyinyiyong@gmail.com>",
   "license": "MIT",
   "scripts":{
+    "watch": "shadow-cljs watch test",
     "compile": "shadow-cljs compile test",
     "test": "yarn compile && node target/test.js"
   },
   "devDependencies": {
-    "shadow-cljs": "^2.0.101"
+    "shadow-cljs": "^2.0.114"
   }
 }
