@@ -16,7 +16,7 @@ Cirru Sepal for Clojure
 ### API Usage [![Clojars Project](https://img.shields.io/clojars/v/cirru/sepal.svg)](https://clojars.org/cirru/sepal)
 
 ```edn
-[cirru/sepal "0.2.0"]
+[cirru/sepal "0.2.1"]
 ```
 
 ```clojure
@@ -33,9 +33,9 @@ Supported forms:
 * `;` and `;;`
 * `case`
 * `def`
-* `defn`
-* `defn-`
-* `fn`
+* `defn`, `defn$`(with arity overloading)
+* `defn-`, `defn$-`(with arity overloading)
+* `fn`, `fn$`(with arity overloading)
 * `fn*`, `#()`
 * `let`
 * `loop`
