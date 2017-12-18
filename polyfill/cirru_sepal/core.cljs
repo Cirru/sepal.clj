@@ -15,7 +15,7 @@
 (defn transform-defn [func params & body]
   (assert (string? func) "[Sepal] function name should be a symbol!")
   (assert (coll? params) "[Sepal] params should be a sequence!")
-  `(~'defn ~(symbol func) [~@(map symbol params)] ~@(map transform-x body)))
+  `(~'defn ~(symbol func) [~@(map transform-x params)] ~@(map transform-x body)))
 
 (defn transform-defn$ [func & body]
   (assert (string? func) "[Sepal] function name should be a symbol!")
@@ -24,13 +24,13 @@
       ~@(map
           (fn [definition]
             (let [[sub-params & sub-body] definition]
-              `([~@(map symbol sub-params)] ~@(map transform-x sub-body))))
+              `([~@(map transform-x sub-params)] ~@(map transform-x sub-body))))
       body)))
 
 (defn transform-defn- [func params & body]
   (assert (string? func) "[Sepal] function name should be a symbol!")
   (assert (coll? params) "[Sepal] params should be a sequence!")
-  `(~'defn- ~(symbol func) [~@(map symbol params)] ~@(map transform-x body)))
+  `(~'defn- ~(symbol func) [~@(map transform-x params)] ~@(map transform-x body)))
 
 (defn transform-defn$- [func & body]
   (assert (string? func) "[Sepal] function name should be a symbol!")
@@ -39,7 +39,7 @@
       ~@(map
           (fn [definition]
             (let [[sub-params & sub-body] definition]
-              `([~@(map symbol sub-params)] ~@(map transform-x sub-body))))
+              `([~@(map transform-x sub-params)] ~@(map transform-x sub-body))))
       body)))
 
 (defn transform-def [var-name body]
@@ -104,7 +104,7 @@
 ; file fn
 (defn transform-fn [params & body]
   (assert (coll? params) "[Sepal] params for fn should be a sequence!")
-  `(~'fn [~@(map symbol params)] ~@(map transform-x body)))
+  `(~'fn [~@(map transform-x params)] ~@(map transform-x body)))
 
 ; file fn$
 (defn transform-fn$ [& body]
@@ -113,7 +113,7 @@
     ~@(map
         (fn [definition]
           (let [[sub-params & sub-body] definition]
-            `([~@(map symbol sub-params)] ~@(map transform-x sub-body))))
+            `([~@(map transform-x sub-params)] ~@(map transform-x sub-body))))
       body)))
 
 ; file fn*
