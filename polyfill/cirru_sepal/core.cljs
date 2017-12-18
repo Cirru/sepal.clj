@@ -15,26 +15,32 @@
 (defn transform-defn [func params & body]
   (assert (string? func) "[Sepal] function name should be a symbol!")
   (assert (coll? params) "[Sepal] params should be a sequence!")
-  (if (vector? (first params))
-    (let [all-body (conj body params)]
-      `(~'defn ~(symbol func) ~@(map
-        (fn [definition]
-          (let [[sub-params & sub-body] definition]
-            `([~@(map symbol sub-params)] ~@(map transform-x sub-body))))
-        all-body)))
-    `(~'defn ~(symbol func) [~@(map symbol params)] ~@(map transform-x body))))
+  `(~'defn ~(symbol func) [~@(map symbol params)] ~@(map transform-x body)))
+
+(defn transform-defn$ [func & body]
+  (assert (string? func) "[Sepal] function name should be a symbol!")
+  (assert (every? coll? body) "[Sepal] body should be deep colls!")
+  `(~'defn ~(symbol func)
+      ~@(map
+          (fn [definition]
+            (let [[sub-params & sub-body] definition]
+              `([~@(map symbol sub-params)] ~@(map transform-x sub-body))))
+      body)))
 
 (defn transform-defn- [func params & body]
   (assert (string? func) "[Sepal] function name should be a symbol!")
   (assert (coll? params) "[Sepal] params should be a sequence!")
-  (if (vector? (first params))
-    (let [all-body (conj body params)]
-      `(~'defn- ~(symbol func) ~@(map
-        (fn [definition]
-          (let [[sub-params & sub-body] definition]
-            `([~@(map symbol sub-params)] ~@(map transform-x sub-body))))
-        all-body)))
-    `(~'defn- ~(symbol func) [~@(map symbol params)] ~@(map transform-x body))))
+  `(~'defn- ~(symbol func) [~@(map symbol params)] ~@(map transform-x body)))
+
+(defn transform-defn$- [func & body]
+  (assert (string? func) "[Sepal] function name should be a symbol!")
+  (assert (every? coll? body) "[Sepal] body should be nested colls!")
+  `(~'defn- ~(symbol func)
+      ~@(map
+          (fn [definition]
+            (let [[sub-params & sub-body] definition]
+              `([~@(map symbol sub-params)] ~@(map transform-x sub-body))))
+      body)))
 
 (defn transform-def [var-name body]
   (assert (string? var-name) "[Sepal] variable name should be a symbol!")
@@ -98,14 +104,17 @@
 ; file fn
 (defn transform-fn [params & body]
   (assert (coll? params) "[Sepal] params for fn should be a sequence!")
-  (if (vector? (first params))
-    (let [all-body (conj body params)]
-      `(~'fn ~@(map
+  `(~'fn [~@(map symbol params)] ~@(map transform-x body)))
+
+; file fn$
+(defn transform-fn$ [& body]
+  (assert (every? coll? body) "[Sepal] body should be nested colls!")
+  `(~'fn
+    ~@(map
         (fn [definition]
           (let [[sub-params & sub-body] definition]
             `([~@(map symbol sub-params)] ~@(map transform-x sub-body))))
-        all-body)))
-    `(~'fn [~@(map symbol params)] ~@(map transform-x body))))
+      body)))
 
 ; file fn*
 (defn transform-fn* [& body]
@@ -147,7 +156,9 @@
     ; demo
     "def" (apply transform-def (rest xs))
     "defn" (apply transform-defn (rest xs))
+    "defn$" (apply transform-defn$ (rest xs))
     "defn-" (apply transform-defn- (rest xs))
+    "defn$-" (apply transform-defn$- (rest xs))
     "defrecord" (apply transform-defrecord (rest xs))
     "[]" (apply transform-vector (rest xs))
     "{}" (apply transform-hashmap (rest xs))
@@ -168,6 +179,7 @@
     ";;" (apply transform-comment (rest xs))
     ; fn
     "fn" (apply transform-fn (rest xs))
+    "fn$" (apply transform-fn$ (rest xs))
     ; fn*
     "#()" (apply transform-fn* (rest xs))
     "fn*" (apply transform-fn* (rest xs))
