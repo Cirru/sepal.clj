@@ -11,6 +11,6 @@
     "test": "yarn compile && node target/test.js"
   },
   "devDependencies": {
-    "shadow-cljs": "^2.0.117"
+    "shadow-cljs": "^2.0.126"
   }
 }

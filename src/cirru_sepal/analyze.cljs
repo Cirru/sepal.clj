@@ -62,7 +62,7 @@
                             [var-name {:kind (first tree), :tokens dep-tokens}])))
                        (into {}))
         self-deps-names (filter (fn [x] (depends-on? x x deps-info 0)) var-names)
-        sorted-names (deps-sort [] (into [] var-names) deps-info)
+        sorted-names (deps-sort [] (sort var-names) deps-info)
         declarations (->> self-deps-names
                           (map (fn [var-name] ["declare" var-name]))
                           (into []))
