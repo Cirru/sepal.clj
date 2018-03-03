@@ -2,12 +2,14 @@
 Cirru Sepal for Clojure
 ----
 
-> Generate Clojure code from syntax tree
+> Generate Clojure code from vectors(based on [FIPP](https://github.com/brandonbloom/fipp))
 
 ```json
 [ "defn" "f1" [ "x" ]
   [ "+" "x" "1" ] ]
 ```
+
+compiles to:
 
 ```clojure
 (defn f1 [x] (+ x 1))
@@ -25,7 +27,18 @@ Cirru Sepal for Clojure
 (cirru-sepal.analyze/write-file {:ns ["ns" "a.b"], :proc [], :defs {:main! ["defn" "main!" ["a" "b"]]}})
 ```
 
-Supported forms:
+In file mode, code will be ordered in an order, with definitions sorted by dependencies. `(declare some-function)` would be generated if potential circular dependencies detected.
+
+```text
+:ns
+:defs
+  def1
+  def2
+  ...
+:proc
+```
+
+Special forms:
 
 * `[]`
 * `{}`
@@ -42,7 +55,11 @@ Supported forms:
 * `ns`
 * `doseq`
 
-Read `data/examples/` and `data/compiled/` for details.
+Special syntaxes:
+
+* `|str` and `"str` generates "str"
+
+Find working examples in `data/examples/` and `data/compiled/`.
 
 ### Test
 
