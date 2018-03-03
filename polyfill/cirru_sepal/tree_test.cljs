@@ -97,6 +97,13 @@
         (read-result "doseq.cljs")
         (run-make-code "doseq.edn")))))
 
+(deftest string-test
+  (testing "test string syntax"
+    (is
+      (=
+        (read-result "string.cljs")
+        (run-make-code "string.edn")))))
+
 (def example-file "
 (ns a.b )
 

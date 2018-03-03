@@ -138,11 +138,13 @@
     (cond
       (= x "true") true
       (= x "false") false
+      (= x "nil") nil
       (= (first x) \:) (keyword (subs x 1))
       (= (first x) \|) (subs x 1)
+      (= (first x) \") (subs x 1)
       (= (first x) \') `(quote ~(symbol (subs x 1)))
-      (re-matches #"-?\d+(\.\d+)?" x) (read-string x)
       (= (first x) \\) (read-string x)
+      (re-matches #"-?\d+(\.\d+)?" x) (read-string x)
       :else (symbol x))
     (vector? x)
     (do

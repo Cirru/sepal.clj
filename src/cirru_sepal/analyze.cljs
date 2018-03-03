@@ -2,6 +2,8 @@
 (ns cirru-sepal.analyze
   (:require [clojure.string :as string] [cirru-sepal.core :refer [write-code]]))
 
+(def def-names #{"def" "defonce"})
+
 (defn depends-on? [x y dict level]
   (if (contains? dict x)
     (let [deps (:tokens (get dict x))]
@@ -11,8 +13,6 @@
           false
           (some (fn [child] (depends-on? child y dict (inc level))) deps))))
     false))
-
-(def def-names #{"def" "defonce"})
 
 (defn deps-insert [acc new-item items deps-info]
   (if (empty? items)
@@ -26,17 +26,22 @@
           (into [] (concat acc [new-item] items)))
         (recur (conj acc cursor) new-item (rest items) deps-info)))))
 
-(def files-cache-ref (atom {}))
-
-(defn strip-property [x] (if (string/includes? x ".") (first (string/split x ".")) x))
-
-(defn strip-atom [token] (if (string/starts-with? token "@") (subs token 1) token))
-
 (defn deps-sort [acc items deps-info]
   (if (empty? items)
     acc
     (let [cursor (first items), next-acc (deps-insert [] cursor acc deps-info)]
       (recur next-acc (into [] (rest items)) deps-info))))
+
+(def files-cache-ref (atom {}))
+
+(defn ns->path [pkg ns-part]
+  (-> (str pkg "." ns-part)
+      (string/replace (re-pattern "\\.") "/")
+      (string/replace (re-pattern "-") "_")))
+
+(defn strip-atom [token] (if (string/starts-with? token "@") (subs token 1) token))
+
+(defn strip-property [x] (if (string/includes? x ".") (first (string/split x ".")) x))
 
 (defn write-file [file-info]
   (let [ns-line (:ns file-info)
@@ -73,8 +78,3 @@
     (comment println "after  sort:" sorted-names)
     (comment println "generated file:" code)
     code))
-
-(defn ns->path [pkg ns-part]
-  (-> (str pkg "." ns-part)
-      (string/replace (re-pattern "\\.") "/")
-      (string/replace (re-pattern "-") "_")))

@@ -16,7 +16,7 @@ Cirru Sepal for Clojure
 ### API Usage [![Clojars Project](https://img.shields.io/clojars/v/cirru/sepal.svg)](https://clojars.org/cirru/sepal)
 
 ```edn
-[cirru/sepal "0.2.2"]
+[cirru/sepal "0.2.3"]
 ```
 
 ```clojure
