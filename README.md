@@ -18,7 +18,7 @@ compiles to:
 ### API Usage [![Clojars Project](https://img.shields.io/clojars/v/cirru/sepal.svg)](https://clojars.org/cirru/sepal)
 
 ```edn
-[cirru/sepal "0.2.3"]
+[cirru/sepal "0.2.4"]
 ```
 
 ```clojure
@@ -58,6 +58,7 @@ Special forms:
 Special syntaxes:
 
 * `|str` and `"str` generates "str"
+* `#"x` generates `#"x"`
 
 Find working examples in `data/examples/` and `data/compiled/`.
 

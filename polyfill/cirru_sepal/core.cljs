@@ -144,6 +144,7 @@
       (= (first x) \") (subs x 1)
       (= (first x) \') `(quote ~(symbol (subs x 1)))
       (= (first x) \\) (read-string x)
+      (and (>= (count x) 2) (= "#\"" (subs x 0 2))) (re-pattern (subs x 2))
       (re-matches #"-?\d+(\.\d+)?" x) (read-string x)
       :else (symbol x))
     (vector? x)

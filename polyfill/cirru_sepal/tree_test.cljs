@@ -104,6 +104,13 @@
         (read-result "string.cljs")
         (run-make-code "string.edn")))))
 
+(deftest regex-test
+  (testing "test regex syntax"
+    (is
+      (=
+        (read-result "regex.cljs")
+        (run-make-code "regex.edn")))))
+
 (def example-file "
 (ns a.b )
 
