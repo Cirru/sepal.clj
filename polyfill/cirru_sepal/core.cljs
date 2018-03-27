@@ -42,10 +42,10 @@
               `([~@(map transform-x sub-params)] ~@(map transform-x sub-body))))
       body)))
 
-(defn transform-def [var-name body]
+(defn transform-def [var-name & body]
   (assert (string? var-name) "[Sepal] variable name should be a symbol!")
   (assert (some? body) (str "[Sepal] value for " var-name " is required!"))
-  `(~'def ~(symbol var-name) ~(transform-x body)))
+  `(~'def ~(symbol var-name) ~@(map transform-x body)))
 
 (defn transform-defrecord [record-name fields]
   `(~'defrecord ~(symbol record-name) [~@(map symbol fields)]))

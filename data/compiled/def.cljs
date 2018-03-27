@@ -5,6 +5,8 @@
 
 (def open-paren "(")
 
+(def dev? ^boolean js/goog.DEBUG)
+
 (defn f1 [x] (+ x 1))
 
 (defn f2 ([a b] (+ a b)) ([a b c] (+ a b c)))
