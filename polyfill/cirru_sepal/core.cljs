@@ -75,26 +75,12 @@
 (defn transform-use [& body]
   `(:use ~@(map transform-x body)))
 
-; file let
+; bindings
 
-(defn transform-let [pairs & body]
-  (assert (coll? pairs) (str "[Sepal] let requires a sequence for bindings: " pairs))
-  (assert (every? coll? pairs) (str "[Sepal] detected literal in let bindings: " pairs))
-  `(~'let [~@(map transform-x (apply concat pairs))] ~@(map transform-x body)))
-
-; file loop
-
-(defn transform-loop [pairs & body]
-  (assert (coll? pairs) (str "[Sepal] loop requires a sequence for bindings: " pairs))
-  (assert (every? coll? pairs) (str "[Sepal] detected literal in loop bindings: " pairs))
-  `(~'loop [~@(map transform-x (apply concat pairs))] ~@(map transform-x body)))
-
-; file doseq
-
-(defn transform-doseq [pairs & body]
-  (assert (coll? pairs) (str "[Sepal] doseq requires a sequence for bindings: " pairs))
-  (assert (every? coll? pairs) (str "[Sepal] detected literal in doseq bindings: " pairs))
-  `(~'doseq [~@(map transform-x (apply concat pairs))] ~@(map transform-x body)))
+(defn transform-bindings [macro-name pairs & body]
+  (assert (coll? pairs) (str "[Sepal] " macro-name " requires a sequence for bindings: " pairs))
+  (assert (every? coll? pairs) (str "[Sepal] detected literal in " macro-name " bindings: " pairs))
+  `(~(symbol macro-name) [~@(map transform-x (apply concat pairs))] ~@(map transform-x body)))
 
 ; file comment
 
@@ -171,12 +157,18 @@
     "ns" (apply transform-ns (rest xs))
     ":require" (apply transform-require (rest xs))
     ":use" (apply transform-use (rest xs))
-    ; let
-    "let" (apply transform-let (rest xs))
-    ; loop
-    "loop" (apply transform-loop (rest xs))
-    ; doseq
-    "doseq" (apply transform-doseq (rest xs))
+    ; bindings
+    "let" (apply transform-bindings xs)
+    "loop" (apply transform-bindings xs)
+    "doseq" (apply transform-bindings xs)
+    "if-let" (apply transform-bindings xs)
+    "when-let" (apply transform-bindings xs)
+    "when-some" (apply transform-bindings xs)
+    "binding" (apply transform-bindings xs)
+    "dotimes" (apply transform-bindings xs)
+    "with-open" (apply transform-bindings xs)
+    "when-first" (apply transform-bindings xs)
+    "with-redefs" (apply transform-bindings xs)
     ; comment
     ";" (apply transform-comment (rest xs))
     ";;" (apply transform-comment (rest xs))

@@ -97,6 +97,13 @@
         (read-result "doseq.cljs")
         (run-make-code "doseq.edn")))))
 
+(deftest bindings-test
+  (testing "test bindings syntax"
+    (is
+      (=
+        (read-result "bindings.cljs")
+        (run-make-code "bindings.edn")))))
+
 (deftest string-test
   (testing "test string syntax"
     (is

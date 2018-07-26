@@ -1,3 +1,0 @@
-
-{:paths ["src" "polyfill"]
- :deps {fipp {:mvn/version "0.6.12"}}}
