@@ -169,6 +169,8 @@
     "with-open" (apply transform-bindings xs)
     "when-first" (apply transform-bindings xs)
     "with-redefs" (apply transform-bindings xs)
+    ; list comprehension
+    "for" (apply transform-bindings xs)
     ; comment
     ";" (apply transform-comment (rest xs))
     ";;" (apply transform-comment (rest xs))
