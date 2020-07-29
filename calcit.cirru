@@ -1,5 +1,5 @@
 
-{} (:sessions $ {})
+{}
   :users $ {}
     |Hy7M-_zef $ {} (:id |Hy7M-_zef) (:name |chen) (:nickname |chen) (:password |d41d8cd98f00b204e9800998ecf8427e) (:avatar nil) (:theme :star-trail)
   :ir $ {} (:package |cirru-sepal)
@@ -677,6 +677,4 @@
                   |j $ {} (:type :leaf) (:text ||def) (:id |B1m0xhUZufgz) (:by |Hy7M-_zef) (:at 1511321940263)
                   |r $ {} (:type :leaf) (:text ||defonce) (:id |BkN0eh8Zuzgf) (:by |Hy7M-_zef) (:at 1511321940263)
         :proc $ {} (:type :expr) (:id |H1Vxn8ZOGez) (:by |Hy7M-_zef) (:at 1511321940263) (:data $ {})
-  :saved-files $ {}
   :configs $ {} (:storage-key |calcit.cirru) (:extension |.cljs) (:output |src) (:port 6001)
-  :repl $ {} (:alive? false) (:logs $ {})

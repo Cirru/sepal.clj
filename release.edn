@@ -1,0 +1,7 @@
+
+{:version "0.2.8-a1"
+ :group-id "cirru"
+ :artifact-id "sepal"
+ :skip-tag true
+ :description "Generate Clojure code from syntax tree"
+ :scm-url "https://github.com/Cirru/sepal.clj"}
