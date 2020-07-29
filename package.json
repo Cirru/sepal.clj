@@ -5,12 +5,12 @@
   "repository": "git@github.com:Cirru/sepal.clj.git",
   "author": "jiyinyiyong <jiyinyiyong@gmail.com>",
   "license": "MIT",
-  "scripts":{
+  "scripts": {
     "watch": "shadow-cljs watch test",
     "compile": "shadow-cljs compile test",
     "test": "yarn compile && node target/test.js"
   },
   "devDependencies": {
-    "shadow-cljs": "^2.4.33"
+    "shadow-cljs": "^2.10.17"
   }
 }

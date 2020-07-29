@@ -1,6 +1,12 @@
-{:source-paths ["src" "polyfill"]
- :dependencies [[fipp "0.6.12"]]
- :builds {:test {:target :node-script
-                 :output-to "target/test.js"
-                 :main cirru-sepal.tree-test/main!
-                 :devtools {:after-load cirru-sepal.tree-test/reload!}}}}
+{
+  :source-paths ["src" "polyfill"]
+  :dependencies [
+    [fipp "0.6.23"]
+  ]
+  :builds {
+    :test {
+      :target :node-script, :output-to "target/test.js", :main cirru-sepal.tree-test/main!
+      :devtools {:after-load cirru-sepal.tree-test/reload!}
+    }
+  }
+}
