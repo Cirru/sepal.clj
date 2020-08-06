@@ -18,7 +18,7 @@ compiles to:
 ### API Usage [![Clojars Project](https://img.shields.io/clojars/v/cirru/sepal.svg)](https://clojars.org/cirru/sepal)
 
 ```edn
-[cirru/sepal "0.2.7"]
+[cirru/sepal "0.2.8"]
 ```
 
 ```clojure

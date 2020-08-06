@@ -1,6 +1,6 @@
 {
   "name": "sepal.clj",
-  "version": "1.0.0",
+  "version": "0.2.8",
   "main": "index.js",
   "repository": "git@github.com:Cirru/sepal.clj.git",
   "author": "jiyinyiyong <jiyinyiyong@gmail.com>",
