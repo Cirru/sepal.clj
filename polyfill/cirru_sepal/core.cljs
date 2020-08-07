@@ -12,10 +12,18 @@
 (defn transform-apply [xs]
   (map transform-x xs))
 
+(defn transform-defn-meta [tag func params & body]
+   (assert (string? func) "[Sepal] function name should be a symbol!")
+   (assert (coll? params) "[Sepal] params should be a sequence!")
+   `(~'defn ~(symbol tag) ~(symbol func) [~@(map transform-x params)] ~@(map transform-x body)))
+
 (defn transform-defn [func params & body]
-  (assert (string? func) "[Sepal] function name should be a symbol!")
-  (assert (coll? params) "[Sepal] params should be a sequence!")
-  `(~'defn ~(symbol func) [~@(map transform-x params)] ~@(map transform-x body)))
+ (if (string/starts-with? func "^")
+  (apply transform-defn-meta func params body)
+  (do
+   (assert (string? func) "[Sepal] function name should be a symbol!")
+   (assert (coll? params) "[Sepal] params should be a sequence!")
+   `(~'defn ~(symbol func) [~@(map transform-x params)] ~@(map transform-x body)))))
 
 (defn transform-defn$ [func & body]
   (assert (string? func) "[Sepal] function name should be a symbol!")

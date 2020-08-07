@@ -1,6 +1,6 @@
 {
   "name": "sepal.clj",
-  "version": "0.2.8",
+  "version": "0.2.9-a1",
   "main": "index.js",
   "repository": "git@github.com:Cirru/sepal.clj.git",
   "author": "jiyinyiyong <jiyinyiyong@gmail.com>",
@@ -11,6 +11,6 @@
     "test": "yarn compile && node target/test.js"
   },
   "devDependencies": {
-    "shadow-cljs": "^2.10.17"
+    "shadow-cljs": "^2.10.19"
   }
 }
