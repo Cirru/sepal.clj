@@ -7,7 +7,7 @@ Cirru Sepal for Clojure
 ### Usages [![Clojars Project](https://img.shields.io/clojars/v/cirru/sepal.svg)](https://clojars.org/cirru/sepal)
 
 ```edn
-[cirru/sepal "0.2.9-a1"]
+[cirru/sepal "0.2.9"]
 ```
 
 ```clojure

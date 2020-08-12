@@ -1,4 +1,4 @@
-{:version "0.2.9-a1",
+{:version "0.2.9",
  :group-id "cirru",
  :artifact-id "sepal",
  :skip-tag true,
