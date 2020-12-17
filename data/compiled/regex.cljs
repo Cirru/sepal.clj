@@ -4,3 +4,5 @@
 (println #"^\#\"")
 
 (println #"a\.")
+
+(println #"\w+\/\w+")
